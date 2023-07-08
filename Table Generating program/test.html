@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Random color example — event handler attribute</title>
+    <style>
+      *{
+        margin: 0px;
+        padding: 0px;
+      }
+      .container{
+          height: 80vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+      }
+      button {
+          margin: 10px
+      };
+      .inputEvent{
+        height: 20vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <button id="doubleClick">Double Clicked (red)</button>
+        <button id = "focus">focus (Blue)</button>
+        <button id = "blur">Blur ( or also called focusOut) (green)</button>
+        <button id = "click">click (lightBlue)</button>
+        <button id = "mouseOver">Mouse Over (pink)</button>
+        <button id = "mouseOut">Mouse Out (yellow)</button>
+
+        <div><p>Press any key on the keyboard to fire keydown event. Also you will see which key you pressed as output </p></div>
+        <div id="output"></div>
+        <!-- <button id = "removeEvent">Remove Click Event Listner</button> -->
+    </div>
+    <div class="inputEvent">
+      <input type="text" name="data" id="inputBox">
+    </div>
+
+    <script>
+      // let btn1 = document.querySelector("#doubleClick");
+      // btn1.addEventListener("dblclick" , ()=>{
+      //   document.querySelector("body").style.backgroundColor = "red";
+      // })
+      // let btn2 = document.querySelector("#focus");
+      // btn2.addEventListener("focus" , ()=>{
+      //   document.querySelector("body").style.backgroundColor = "blue";
+      // })
+      // let btn3 = document.querySelector("#blur");
+      // btn3.addEventListener("blur" , ()=>{
+      //   document.querySelector("body").style.backgroundColor = "green";
+      // })
+      // let btn4 = document.querySelector("#click");
+      // btn4.addEventListener("click" , clickFunction = ()=>{
+      //   document.querySelector("body").style.backgroundColor = "lightblue";
+      // })
+      // let btn5 = document.querySelector("#mouseOver");
+      // btn5.addEventListener("mouseover" , ()=>{
+      //   document.querySelector("body").style.backgroundColor = "pink";
+      // })
+      // let btn6 = document.querySelector("#mouseOut");
+      // btn6.addEventListener("mouseout" , ()=>{
+      //   document.querySelector("body").style.backgroundColor = "yellow";
+      // })
+
+      // // btn4.removeEventListener("click" , clickFunction);
+      
+
+      // const btn = document.querySelector("#click");
+      // function random(number) {
+      //   return Math.floor(Math.random() * (number + 1));
+      // }
+
+      // function bgChange(e) {
+      //   const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+      //   e.target.style.backgroundColor = rndCol;
+      //   console.log(e);
+      // }
+
+      // btn.addEventListener("click", bgChange);
+
+      // const body = document.querySelector("body");
+      // const output = document.querySelector("#output");
+      // body.addEventListener("keydown", (event) => {
+      //   output.textContent = `You pressed "${event.key}".`;
+      // });
+      
+      let inputElement = document.querySelector("#inputBox");
+
+      inputElement.addEventListener("input",(e)=>{
+        console.log("Event Fired" + `You pressed ${e.data}\n`);
+        console.log(e.dataTransfer);
+      })
+
+
+
+    </script>
+  </body>
+</html>
