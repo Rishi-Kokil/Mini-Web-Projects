@@ -1,15 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 *{
     padding: 0px;
     margin: 0px;
+    font-family: 'Roboto', sans-serif;
 }
 input{
     text-align: center;
 }
 .container{
-    width: 75vw;
+    width: 90vw;
     margin: auto;
-    height: 100vh;
+    padding-bottom: 20px;
+    background-color: beige;
+    border-bottom: 0.5px solid black;
 }
+.tableContainer{
+    padding-top: 20px;
+    width: 90vw;
+    margin: auto;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 
 #textbar{
     color: grey;
@@ -24,8 +41,26 @@ input{
 }
 .navbar > *{
     flex-basis: 200px;
+    padding: 10px 0px;
 }
 
 h1{
     text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+input{
+    /* background-color: transparent; */
+    border-radius: 5px;
+    border: 0px;
+}
+
+table{
+
+}
+td{
+    border: 0px solid;
+}
+tr{
+    border-bottom: 1px solid black;
+    padding: 10px 0px;
 }
