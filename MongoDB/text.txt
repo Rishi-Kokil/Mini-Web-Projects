@@ -1,0 +1,22 @@
+{
+  "username" : "rishi",
+  "password" : "password"
+}
+
+{
+  "message": "Logged in successfully",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpc2hpIiwicGFzc3dvcmQiOiJwYXNzd29yZCIsImlhdCI6MTcwMzgxNDQxMSwiZXhwIjoxNzAzODE4MDExfQ.JJexkzFgaE5ScyCkrS5Lg1juwyhgK0MUxNwGCKHCiuo"
+}
+
+{
+  "message": "Admin logged in Successfully",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDM4MTU4MDgsImV4cCI6MTcwMzgxOTQwOH0.IY0sP2idA9RaXwA1h1mNkkPD43PGZzae-YWC7dNFCgw"
+}
+
+{
+    "title": "New Course",
+    "description": "lorem ipsum dolor sit",
+    "price": 123456,
+    "imageLink": "https://demoURL.com",
+    "published": true
+}
