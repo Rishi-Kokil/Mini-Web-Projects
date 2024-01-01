@@ -20,3 +20,8 @@
     "imageLink": "https://demoURL.com",
     "published": true
 }
+
+{
+  "message": "Admin Added Succesfully",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpc2hpIiwicGFzc3dvcmQiOiIkMmIkMDQkalFvSDl4ZDI0RFRYS0xrclB6cWlNTzhrUVJ6RHNTN1VEa1p3THpwMzdxSUxUVjYuTjFuTEsiLCJpYXQiOjE3MDQxMDMwNDUsImV4cCI6MTcwNDEzOTA0NX0.hKNTyg7DibTnOH66yRb4Z9yikK4uf-BezE-Rh7uFB3U"
+}
