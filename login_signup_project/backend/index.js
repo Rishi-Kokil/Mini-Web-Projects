@@ -74,9 +74,9 @@ const authenticateAdmin = (req, res, next) => {
 
 const authenticateUser = (req, res, next) => {
     const header = req.headers;
-    const token = header.authorization.spilt(" ")[1];
+    const token = header.authorization.split(" ")[1];
 
-    jwt.verify(token, SECRECT_ADMIN_KEY, (err, data) => {
+    jwt.verify(token, SECRECT_USER_KEY, (err, data) => {
         if (err) {
             res.status(403).send("Unauthorised")
         }
@@ -123,7 +123,7 @@ app.post("/admin/signup", async (req, res) => {
     const { username, password } = req.body;
     const admin = await Admin.findOne({ username });
     if (admin) {
-        res.status(401).send("Admin with this username already exists");
+        res.status(401).json({message : "Admin with this username already exists"});
     }
     else {
         //salting the password
@@ -139,11 +139,12 @@ app.post("/admin/signup", async (req, res) => {
                 res.json({ message: "Admin Added Succesfully", token });
             }
             else {
-                res.send("Invalid Password")
+                res.status(401).json({message : "Invalid Password"});
             }
 
         } catch (error) {
-            res.status(401).send(error.message);
+            const message = error.message;
+            res.status(401).json({message});
         }
     }
 })
@@ -159,16 +160,70 @@ app.post("/admin/login", async (req, res) => {
             const token = jwt.sign({ username, 'password': admin.password }, SECRECT_ADMIN_KEY, { expiresIn: '1h' });
             res.json({ message: "User Logged in successfully", token });
         } else {
-            res.status(401).send("Invalid Password");
+            res.status(401).json({message : "Invalid Password"});
         }
     } else {
-        res.status(404).send("Admin not found");
+        res.status(404).json({message : "Admin not found"});
     }
 
 })
 
-//User Routes
+//---------User Routes
 
+app.get("/user", authenticateUser, async (req, res) => {
+    const { username, password } = req.user;
+    //retirveing all admins
+    const allUsers = await User.find({});
+    res.json(allUsers);
+})
+
+app.post("/user/signup", async (req, res) => {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    if (user) {
+        res.status(401).json({message : "User with this username already exists"});
+    }
+    else {
+        //salting the password
+        try {
+            const newhash = await hashPassword(password);
+            console.log(newhash);
+            //create a jwt toekn and send it to the frontend
+            if (newhash) {
+                const token = jwt.sign({ username, 'password': newhash }, SECRECT_USER_KEY, { expiresIn: '10h' });
+
+                const newUser = new User({ username, 'password': newhash });
+                newUser.save();
+                res.json({ message: "User Added Succesfully", token });
+            }
+            else {
+                res.status(401).json({message : "Invalid Password"})
+            }
+
+        } catch (error) {
+            res.status(401).send(error.message);
+        }
+    }
+})
+
+app.post("/user/login", async (req, res) => {
+    const { username, password } = req.body;
+    const hashedpassword = await hashPassword(password);
+
+    const user = await User.findOne({ username });
+    if (user) {
+        const isPasswordValid = await hashVerify(password, user.password);
+        if (isPasswordValid) {
+            const token = jwt.sign({ username, 'password': user.password }, SECRECT_USER_KEY, { expiresIn: '1h' });
+            res.json({ message: "User Logged in successfully", token });
+        } else {
+            res.status(401).json({message : "Invalid Password"});
+        }
+    } else {
+        res.status(404).json({message : "User not found"});
+    }
+
+})
 
 
 //server
